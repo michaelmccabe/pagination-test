@@ -1,0 +1,17 @@
+Ok, there's not much to Revenue Calculator. Once the algorithm was worked out, a single unit test was all I added.
+
+It wasn't specified what kind of application to build so to demonstrate the pagination, I put together a very light weight Spring Boot app.
+The Documents are read in from a flat text file.
+The returned results can be accessed by running the spring boot app, after a maven build and going to 
+http://localhost:8080/documents?page=6&pageSize=4 
+Vary page and pageSize as appropriate
+
+The Service getDocumentSearchResult method calculates the total number of pages, total number of results and finds first result to go to.
+The error conditions of pageSize and page being out of bounds is also accounted for
+When there is no PreviousPage or NextPage, it is returned as "-"
+
+Notes:
+I used spring-boot-starter-hateoas for only he request mapping but of course it can add a lot more to a RESTful API, including adding
+the href dynamically.
+Also, the pagination itself would usually be carried out over the datasource - again frameworks like Spring Data/Hibernate can do this 
+for you or in JDBC you'd query for the page in the SQL request
